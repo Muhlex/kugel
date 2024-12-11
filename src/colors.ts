@@ -72,8 +72,11 @@ export const colorToMinutes = (() => {
 
 export const parseColor = (color?: string): string | undefined => {
 	if (color === undefined) return undefined;
-	const parsed = colord(color);
-	if (!parsed.isValid()) return undefined;
+	let parsed = colord(color);
+	if (!parsed.isValid()) {
+		parsed = colord(`#${color}`);
+		if (!parsed.isValid()) return undefined;
+	};
 	const alpha = parsed.alpha();
 	return parsed
 		.alpha(1)
