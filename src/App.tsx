@@ -1,4 +1,4 @@
-import { type Component, Show, createSignal, createEffect, on } from "solid-js";
+import { type Component, Show, createEffect, createSignal } from "solid-js";
 
 import { colorToMinutes, minutesToColor, parseColor } from "./colors";
 
@@ -8,7 +8,7 @@ import InputTime, { parseMinutes } from "./InputTime";
 
 const App: Component = () => {
 	const minutesNow = (() => {
-		const date = new Date("2024-01-01T14:20:01");
+		const date = new Date();
 		return date.getHours() * 60 + date.getMinutes();
 	})();
 
@@ -46,6 +46,7 @@ const App: Component = () => {
 		updateColor(window.location.hash);
 	};
 	window.onhashchange = onHashChange;
+	onHashChange();
 	createEffect(() => {
 		window.location.hash = validColor() ?? "";
 	});

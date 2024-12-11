@@ -76,7 +76,7 @@ export const parseColor = (color?: string): string | undefined => {
 	if (!parsed.isValid()) {
 		parsed = colord(`#${color}`);
 		if (!parsed.isValid()) return undefined;
-	};
+	}
 	const alpha = parsed.alpha();
 	return parsed
 		.alpha(1)
