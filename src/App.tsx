@@ -36,7 +36,8 @@ const App: Component = () => {
 
 	const updateColor = (value: string) => {
 		setColor(value);
-		const minutes = colorToMinutes(value)[0]?.[0];
+		const validValue = validColor();
+		const minutes = validValue ? colorToMinutes(validValue)[0]?.[0] : undefined;
 		setMinutes(minutes);
 	};
 

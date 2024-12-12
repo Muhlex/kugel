@@ -72,9 +72,10 @@ export const colorToMinutes = (() => {
 
 export const parseColor = (color?: string): string | undefined => {
 	if (color === undefined) return undefined;
-	let parsed = colord(color);
+	const colorTrimmed = color.trim();
+	let parsed = colord(colorTrimmed);
 	if (!parsed.isValid()) {
-		parsed = colord(`#${color}`);
+		parsed = colord(`#${colorTrimmed}`);
 		if (!parsed.isValid()) return undefined;
 	}
 	const alpha = parsed.alpha();
